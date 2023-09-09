@@ -1,0 +1,1269 @@
+  
+  
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <style>
+        body {
+            width: 100%;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        .img {
+            width: 100%;
+            object-fit: contain;
+        }
+
+        .img_bg_container {
+            width: 100%;
+            height: fit-content;
+            position: relative;
+            --bs-gutter-x: 1.5rem;
+            --bs-gutter-y: 0;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        .voice_box {
+            position: absolute;
+        }
+
+    .input_number-food,
+    .input_number {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   font-size: 24px;
+   font-weight: bold;
+   border: none;
+   gap: 5px;
+   z-index: 10;
+}
+
+.input_number-food input {
+   background-color: rgb(255, 255, 160);
+   border: 1px solid rgb(66, 201, 255);
+   border-radius: 6px;
+   width: 90%;
+   height: 70%;
+   transition: 300ms;
+   cursor: pointer;
+   color: rgb(0,0,98);
+   caret-color: rgb(85, 17, 255);
+   text-align: center;
+   font-size: 1.2rem;
+   outline: none;
+   position: absolute;
+   z-index: 10;
+}
+.minute-input,
+.hour-input {
+    width: 40%;
+    height: 60%;
+    margin: 0 0 0 0;
+    background-color: rgb(255, 255, 160);
+   border: 1px solid rgb(66, 201, 255);
+   border-radius: 6px;
+   transition: 300ms;
+   cursor: pointer;
+   color: rgb(0,0,98);
+   caret-color: rgb(85, 17, 255);
+   text-align: center;
+   font-size: 1.2rem;
+   outline: none;
+   
+}
+@media (max-width: 750px) {
+    .input_number input {
+        font-size: .4rem;
+    }
+}
+.dropZones {
+    width: 100%;
+    height: 100%;
+    background-color: #6F75FF;
+    color: #B1FFFF;
+    z-index: 10;
+    position: absolute;
+    /* left: 200px; */
+    font-size: 1.3rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+#dragVisual {
+   display: none;
+   position: fixed;
+   pointer-events: none;
+   z-index: 1000;
+   font-size: 25px;
+   font-weight: bold;
+   /* Add more styling as needed */
+}
+.words {
+    background-color: #6F75FF;
+    width: 500px;
+    display: flex;
+    justify-content: space-around;
+    height: 50px;
+    align-items: center;
+    border-radius: 6px;
+    color: #B1FFFF;
+    font-size: 30px;
+
+}
+.words > span {
+    background-color: #B1FFFF;
+    height: 40px;
+    width: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 20px;
+    font-weight: bold;
+    color: #090070;
+    cursor: pointer;
+    transition: 300ms;
+    animation: dragAnimation 1s alternate infinite;
+}
+@keyframes dragAnimation {
+    0%,100% {
+        scale: 1;
+    }
+    50% {
+        scale: 1.07;
+    }
+}
+
+@media (max-width: 850px) {
+    .words  > span {
+        font-size: 14px;
+        height: 30px;
+        width: 60px;
+        animation : none;
+    }
+    .words  {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 670px) {
+    .words  > span {
+        font-size: 10px;
+        height: 15px;
+        width: 50px;
+        animation : none;
+    }
+    .words  {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 400px) {
+    .words  > span {
+        font-size: 8px;
+        height: 10px;
+        width: 30px;
+        animation : none;
+    }
+    .words  {
+        font-size: 8px;
+    }
+}
+
+.darg-icon {
+    animation: dargIcon 3s infinite;
+    position: relative;
+    z-index: 100;
+}
+
+@keyframes dargIcon {
+    0% {
+        top: 0;
+        left: 0;
+    }
+    25% {
+        top: 100%;
+        left: 0;
+    }
+    50% {
+        top: 100%;
+        left: -50%;
+    }
+    75% {
+        top: 100%;
+        left: 0;
+    }
+    100% {
+        top: 0;
+        left: 0;
+    }
+}
+    </style>
+
+    <div>
+        <section class="img_bg_container">
+            <img class="img" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@كتاب_الطالب_انكليزي_خامس_ابتدائي_page-0024.jpg">
+        
+<div class="voice_box drag_resize " onclick="highlightTest('L21', this)" id="moving" style="top: 10.2696%; cursor: e-resize; height: 5.09371%; left: 65.2314%; width: 23.7205%;"></div>
+             
+<div class="voice_box drag_resize " onclick="highlightTest('L23', this)" id="moving" style="top: 25.4685%; cursor: move; height: 4.7638%; left: 61.5105%; width: 19.996%;"></div>
+             
+<div class="voice_box drag_resize " onclick="highlightTest('L22', this)" id="moving" style="top: 25.1399%; cursor: move; height: 4.7638%; left: 8.83705%; width: 23.9531%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L2', this)" style="top: 39.2709%; cursor: move; height: 4.02439%; left: 5.11619%; width: 26.86%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L12', this)" style="top: 42.0642%; cursor: n-resize; height: 10.104%; left: 54.999%; width: 33.0227%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L10', this)" style="top: 47.6508%; cursor: s-resize; height: 3.77664%; left: 20.3485%; width: 29.647%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L11', this)" style="top: 59.2349%; cursor: move; height: 3.03723%; left: 20.6973%; width: 30.8134%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L13', this)" style="top: 58.0847%; cursor: move; height: 6.81643%; left: 55.4641%; width: 32.325%;"></div>
+             
+<div class="voice_box drag_resize " onclick="highlightTest('L20', this)" id="moving" style="top: 11.1733%; cursor: s-resize; height: 4.10655%; left: 2.67437%; width: 13.9496%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L1', this)" style="top: 5.66881%; cursor: n-resize; height: 2.95764%; left: 5.81385%; width: 40.8114%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L3', this)" style="top: 43.9538%; cursor: s-resize; height: 2.38126%; width: 2.67437%; left: 7.90683%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L4', this)" style="top: 46.8293%; cursor: s-resize; height: 2.38126%; left: 6.97662%; width: 4.65108%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L5', this)" style="top: 49.7047%; cursor: s-resize; height: 2.54429%; left: 7.32545%; width: 4.06788%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L6', this)" style="top: 52.6624%; cursor: s-resize; height: 2.54429%; left: 5.93012%; width: 7.09108%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L7', this)" style="top: 56.7702%; cursor: s-resize; height: 2.05392%; left: 7.09289%; width: 4.53117%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L8', this)" style="top: 59.81%; cursor: s-resize; height: 2.13479%; left: 6.74406%; width: 5.23065%;"></div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L9', this)" style="top: 62.6855%; cursor: move; height: 2.21823%; left: 7.20917%; width: 3.71905%;"></div>
+             
+<div class="voice_box drag_resize input_number-food" id="moving" style="top: 42.475%; cursor: s-resize; height: 2.54557%; left: 59.3012%; width: 26.2786%;">
+<input class="eighteen" type="text" data-input-value="eat" onkeyup="compareFunctionValue(this, 'eat')">
+</div>
+             
+<div class="voice_box drag_resize input_number-food" id="moving" style="top: 58.4134%; cursor: s-resize; height: 2.29782%; left: 62.2082%; width: 24.0657%;">
+    <input class="eighteen" type="text" data-input-value="eats" onkeyup="compareFunctionValue(this, 'eats')">
+</div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L14', this)" style="top: 67.8614%; cursor: e-resize; height: 2.62773%; left: 6.0464%; width: 41.976%;"></div>
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L15', this)" style="top: 71.4763%; cursor: move; height: 3.44801%; left: 5.46502%; width: 71.8592%;">
+    
+</div>
+
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L16', this)" style="top: 75.5841%; cursor: n-resize; height: 3.69705%; left: 5.58129%; width: 60.9273%;">
+    <div class="voice_box drag_resize "id="moving" style=   " top: 16.8049%;
+    cursor: move;
+    height: 70.38126%;
+    left: 8.5345%;
+    width: 34.0211%;">
+        <div class="dropZones" data-zone="zone2"></div>
+    </div>
+</div>
+             
+<div class="voice_box drag_resize" id="moving" style="top: 80.1027%; cursor: move; height: 2.71117%; left: 12.7905%; width: 16.8602%;">
+    <div class="dropZones" data-zone="zone3"></div>
+</div>
+             
+<div class="voice_box drag_resize" id="moving" style="top: 84.5392%; cursor: move; height: 2.79204%; left: 20.2322%; width: 16.6258%;">
+    <div class="dropZones" data-zone="zone5"></div>s
+</div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L18', this)" style="top: 84.2927%; cursor: n-resize; height: 4.18999%; left: 5.46502%; width: 73.6015%;">
+   
+</div>
+             
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L17', this)" style="top: 79.6919%; cursor: s-resize; height: 3.94352%; left: 5.46502%; width: 59.0687%;">
+    
+</div>
+             
+<div class="voice_box drag_resize input_number div" id="moving" style="top: 92.9191%; cursor: move; height: 3.36714%; left: 52.2084%; width: 13.9514%;">
+    <input class="hour-input" type="number" data-correct-value="8">
+    <input class="minute-input"  type="number" data-correct-value="00">
+</div>
+
+<div class="voice_box drag_resize input_number div" id="moving" style="top: 92.6727%; cursor: ne-resize; height: 3.28498%; left: 75.8126%; width: 13.9514%;">
+    <input class="hour-input" type="number" data-correct-value="11">
+    <input class="minute-input"  type="number" data-correct-value="15">
+</div>
+
+<div class="voice_box drag_resize input_number div" id="moving" style="top: 93.0013%; cursor: s-resize; height: 3.20411%; left: 28.8367%; width: 13.9514%;">
+<input class="hour-input"  type="number" data-correct-value="7">
+<input class="minute-input"  type="number" data-correct-value="30">
+</div>
+<div class="voice_box drag_resize " id="moving" onclick="highlightTest('L19', this)" style="top: 90.4544%; cursor: s-resize; height: 2.4647%; left: 5.69757%; width: 23.7205%;"></div>
+<div class="voice_box drag_resize " id="moving" style="top: 93.7407%; cursor: move; height: 3.61361%; left: 5.93012%; width: 11.0445%;"></div>
+
+<div class="voice_box drag_resize "id="moving" style="top: 71.8049%; cursor: move; height: 2.38126%; left: 19.5345%; width: 18.0211%;">
+    <div class="dropZones" data-zone="zone4"></div>
+</div>
+            
+            <div class="voice_box drag_resize words" id="" style="top: 67.4506%; cursor: s-resize; height: 3.53273%; left: 48.72%; width: 50.2316%;">
+            <i class="fa-solid fa-hand-pointer darg-icon"></i>
+            <span class="draggables" draggable="true" data-match="zone5">feds</span>
+            <span class="draggables" draggable="true" data-match="zone2">leaves</span>
+            <span class="draggables" draggable="true" data-match="zone4">gets</span>
+            <span class="draggables" draggable="true" data-match="zone3">opens</span>
+            </div>
+            </section>
+
+            <div class="audio">
+                <audio id="L1" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_23.mp3"></audio>
+                <audio id="L2" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_24.mp3"></audio>
+                <audio id="L3" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_25.mp3"></audio>
+                <audio id="L4" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_26.mp3"></audio>
+                <audio id="L5" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_27.mp3"></audio>
+                <audio id="L6" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_28.mp3"></audio>
+                <audio id="L7" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_29.mp3"></audio>
+                <audio id="L8" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_30.mp3"></audio>
+                <audio id="L9" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_31.mp3"></audio>
+                <audio id="L10" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_32.mp3"></audio>
+                <audio id="L11" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_33.mp3"></audio>
+                <audio id="L12" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_34.mp3"></audio>
+                <audio id="L13" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_35.mp3"></audio>
+                <audio id="L14" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_36.mp3"></audio>
+                <audio id="L15" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_37.mp3"></audio>
+                <audio id="L16" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_38.mp3"></audio>
+                <audio id="L17" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_39.mp3"></audio>
+                <audio id="L18" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_40.mp3"></audio>
+                <audio id="L19" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@Sequence_01_41.mp3"></audio>
+                <audio id="L20" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@eng_p25_dia1.mp3"></audio>
+                <audio id="L21" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@eng_p25_dia2.mp3"></audio>
+                <audio id="L22" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@eng_p25_dia3.mp3"></audio>
+                <audio id="L23" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@eng_p25_dia4.mp3"></audio>
+            </div>
+
+            </div>
+
+            <div class="correct-wrong-audio">
+                <audio id="lose" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@lose_sound.mp3"></audio>
+                <audio id="win" src="https://learner.ta3leem.iq/asset-v1:Ta3leem+1+2022_2023+type@asset+block@win_sound.wav"></audio>
+            </div>
+
+    </div>
+
+<div id="dragVisual"></div>
+
+<script>
+    function playrootVideo(videoId) {
+        var rVideo = document.getElementById(videoId);
+        var pic = document.getElementById('rootw');
+
+        rVideo.play();
+        pic.style.backgroundColor = 'white';
+        rVideo.style.display = "block";
+    }
+   
+    let timeDuration;
+     let img1 = document.getElementById('img1')
+        let img2 = document.getElementById('img2')
+
+    let audios = document.querySelectorAll('audio');
+
+
+        audios.forEach(audio => {
+            audio.addEventListener('loadedmetadata', function() {
+             timeDuration=audio.duration
+
+            });
+        });
+
+    function highlightTest(id,ele){
+    let audio = document.getElementById(id)
+        replayAudio(id)
+        closeDiv()
+
+        ele.style.backgroundColor='rgb(255, 255, 160)'
+        ele.style.opacity='0.2'
+        setTimeout(function(){
+                    closeDiv()
+                },audio.duration*1000
+                )
+             }
+
+
+    function closeDiv()
+    {
+        let allDives = document.querySelectorAll('#moving')
+        allDives.forEach((ele ) => {
+            ele.style.border = 'none';
+            ele.style.backgroundColor='transparent'
+            ele.style.opacity='1'
+        })
+    }
+// Start Validation Input
+
+      // time Check
+      document.addEventListener('keyup', function(event) {
+    // Get the parent div of the input that was changed
+    let parentDiv = event.target.closest('.div');
+
+    if (!parentDiv) return; // Return if there's no parent div (not one of our inputs)
+
+    // Get the hour and minute inputs within this div
+    let hourInputElement = parentDiv.querySelector('.hour-input');
+    let minuteInputElement = parentDiv.querySelector('.minute-input');
+
+    let hourCorrectValue = hourInputElement.getAttribute('data-correct-value');
+    let minuteCorrectValue = minuteInputElement.getAttribute('data-correct-value');
+
+    let isHourCorrect = hourInputElement.value == hourCorrectValue;
+    let isMinuteCorrect = minuteInputElement.value == minuteCorrectValue;
+
+    if (hourInputElement.value.length === hourCorrectValue.length && minuteInputElement.value.length === minuteCorrectValue.length) {
+        if (isHourCorrect && isMinuteCorrect) {
+            markAsCorrect(hourInputElement);
+            markAsCorrect(minuteInputElement);
+            playAudio(winAudio);
+        } else {
+            if (!isHourCorrect) markAsWrong(hourInputElement);
+            if (!isMinuteCorrect) markAsWrong(minuteInputElement);
+            playAudio(loseAudio);
+        }
+    }
+});
+
+function markAsCorrect(element) {
+    element.style.backgroundColor = '#0cc835';
+    element.style.color = '#ffff';
+}
+
+function markAsWrong(element) {
+    element.style.backgroundColor = '#E43232';
+    element.style.color = '#ffff';
+}
+
+
+// End Validation
+
+
+    // Start New Function 
+    let winAudio = document.getElementById('win')
+    let loseAudio = document.getElementById('lose')
+    function compareFunctionValue(i, value) {
+        if(i.value.length >= 3) {
+            if(i.value === value) {
+                winSenario(i, winAudio)
+            } else {
+                lossSenario(i,loseAudio)
+            }
+        }
+    }
+    // End New Function 
+
+    // Start Win Senario Functino
+    function winSenario(item, winAudio) {
+        item.style.backgroundColor = '#0cc835'
+        item.style.color = '#fff'
+        audioPlay(winAudio)
+    }
+    // End Win Senario Functino
+
+    // Start Loss Senario Function
+    function lossSenario(item, lossAudio) {
+        item.style.backgroundColor = '#E43232'
+        item.style.color = '#fff'
+        audioPlay(lossAudio)
+    }
+    // End Loss Senario Function
+
+
+
+// Start Drag And Drop Function
+let isDragging = false;
+let currentDragItem = null;
+let currentDropZone = null;
+let originalParent = null;
+let originalNextSibling = null;
+const draggables = document.querySelectorAll('.draggables');
+const dropZones = document.querySelectorAll('.dropZones');
+
+draggables.forEach(draggable => {
+   // Desktop events
+   draggable.addEventListener('dragstart', handleDragStart);
+   draggable.addEventListener('dragend', handleDragEnd);
+});
+
+
+dropZones.forEach(dropZone => {
+   // Desktop events
+   dropZone.addEventListener('dragover', handleDragOver);
+   dropZone.addEventListener('drop', handleDrop);
+
+   // No equivalent touch events needed here
+});
+
+function handleDragStart(e) {
+   currentDragItem = e.target;
+   originalParent = currentDragItem.parentElement;
+   originalNextSibling = currentDragItem.nextElementSibling;
+   e.dataTransfer.setData('text/plain', ''); // for Firefox compatibility
+}
+
+function handleDragOver(e) {
+   e.preventDefault();
+}
+
+function handleDrop(e) {
+    e.preventDefault();
+
+   // 1. Check if the dropzone is already occupied
+    if (e.target.hasChildNodes()) {
+       originalParent.insertBefore(currentDragItem, originalNextSibling); // revert back to the original position
+        return;
+   }
+   
+   // 2. Check if dropped in the wrong dropzone
+   const matchingZone = currentDragItem.getAttribute('data-match');
+   if (e.target.getAttribute('data-zone') !== matchingZone) {
+       originalParent.insertBefore(currentDragItem, originalNextSibling); // revert back to the original position
+        loseAudio(e.target, loseAudio)
+        audioPlay(e.target)
+       
+       return;
+   }
+   
+   // 3. Dropped in the right dropzone
+   e.target.appendChild(currentDragItem);
+   winSenario(e.target, winAudio)
+   audioPlay(e.target)
+}
+function handleDragEnd(e) {
+   currentDragItem = null;
+}
+// ----------------start touch devices ---------------------
+
+let currentTouchPosition = null;
+let dragVisual = document.getElementById('dragVisual');
+
+function handleTouchStart(e) {
+   currentDragItem = e.target;
+   originalParent = currentDragItem.parentElement;
+   originalNextSibling = currentDragItem.nextElementSibling;
+
+   currentDragItem.style.scale = 1.2;
+   currentDragItem.style.fontSize = '10px';
+   
+   dragVisual.textContent = currentDragItem.textContent;
+   dragVisual.style.display = 'block';
+   dragVisual.style.boxShadow='5px 5px 20px red'
+   dragVisual.style.top = `${e.touches[0].clientY}px`;
+   dragVisual.style.left = `${e.touches[0].clientX}px`;
+
+   currentTouchPosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+}
+
+function handleTouchMove(e) {
+    e.preventDefault()
+    currentTouchPosition = { x: e.touches[0].clientX, y: e.touches[0].clientY };
+    dragVisual.style.top = `${currentTouchPosition.y}px`;
+    dragVisual.style.left = `${currentTouchPosition.x}px`;
+}
+
+function handleTouchEnd(e) {
+   const touchedElement = document.elementFromPoint(currentTouchPosition.x, currentTouchPosition.y);
+   dragVisual.style.display = 'none';  // Hide the dragVisual
+
+   // Check if the touched element or its parent is a dropzone
+   const dropzone = touchedElement.classList.contains('dropZones') 
+       ? touchedElement 
+       : touchedElement.closest('.dropZones');
+   
+   if (dropzone) {
+       // 1. Check if the dropzone is already occupied
+       if (dropzone.hasChildNodes()) {
+           originalParent.insertBefore(currentDragItem, originalNextSibling);
+           return;
+       }
+
+       // 2. Check if dropped in the wrong dropzone
+       const matchingZone = currentDragItem.getAttribute('data-match');
+       if (dropzone.getAttribute('data-zone') !== matchingZone) {
+           originalParent.insertBefore(currentDragItem, originalNextSibling);
+           lossSenario(dropzone, loseAudio)
+           audioPlay(loseAudio)
+           return;
+       }
+
+       // 3. Dropped in the right dropzone
+       dropzone.appendChild(currentDragItem);
+       winSenario(dropzone, winAudio)
+       audioPlay(dropzone)
+   }
+
+   currentTouchPosition = null;
+   currentDragItem = null;
+}
+
+// Attach touch event listeners
+document.querySelectorAll('.draggables').forEach(item => {
+   item.addEventListener('touchstart', handleTouchStart);
+   item.addEventListener('touchmove', handleTouchMove);
+   item.addEventListener('touchend', handleTouchEnd);
+});
+
+    // End Drag And Drop Function
+
+
+
+
+
+
+
+
+
+    function audioPlay(ele) {
+        ele.muted=false;
+        ele.currentTime=0;
+        ele.play();
+    }
+
+</script>
+
+
+
+<!-- video animation function -->
+    <script>
+function playHiddenVideo(videoId) {
+var video = document.getElementById(videoId);
+
+// Create backdrop overlay
+var backdrop = document.createElement('div');
+backdrop.style.position = 'fixed';
+backdrop.style.top = '0';
+backdrop.style.left = '0';
+backdrop.style.width = '100%';
+backdrop.style.height = '100%';
+backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Adjust the transparency as desired
+backdrop.style.zIndex = '9999';
+document.body.appendChild(backdrop);
+
+// Play the video
+video.play();
+
+// Set video properties
+var videoSize = Math.min(window.innerWidth, window.innerHeight) * 0.6; // Adjust the size as desired
+var videoMargin = videoSize / 2;
+
+// Center the video on the page
+video.style.display = 'block';
+video.style.position = 'fixed';
+video.style.width = videoSize + 'px';
+video.style.height = videoSize + 'px';
+video.style.top = '50%';
+video.style.left = '50%';
+video.style.transform = 'translate(-50%, -50%)';
+video.style.zIndex = '10000';
+
+var closeButton = document.createElement('button');
+closeButton.innerHTML = 'اغلاق';
+closeButton.style.position = 'fixed';
+closeButton.style.top = '10px';
+closeButton.style.right = '10px';
+closeButton.style.zIndex = '10001';
+closeButton.onclick = closeVideo;
+document.body.appendChild(closeButton);
+
+// Listen for the 'ended' event
+
+        function closeVideo() {
+//player.pauseVideo();
+document.body.removeChild(backdrop);
+document.body.removeChild(closeButton);
+video.pause ();
+video.style.display = 'none';
+}
+}
+
+    </script>
+<!-- iframe -->
+    <script>
+function showIframe(id) {
+var iframe = document.getElementById(id);
+
+// Create backdrop overlay
+var backdrop = document.createElement('div');
+backdrop.style.position = 'fixed';
+backdrop.style.top = '0';
+backdrop.style.left = '0';
+backdrop.style.width = '100%';
+backdrop.style.height = '100%';
+backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+backdrop.style.zIndex = '9999';
+document.body.appendChild(backdrop);
+var closeButton = document.createElement('button');
+closeButton.innerHTML = 'اغلاق';
+closeButton.style.position = 'fixed';
+closeButton.style.top = '10px';
+closeButton.style.right = '10px';
+closeButton.style.zIndex = '10001';
+closeButton.onclick = closeIframe;
+document.body.appendChild(closeButton);
+
+// Center the iframe on the page
+iframe.style.display = 'block';
+iframe.style.position = 'fixed';
+iframe.style.top = '50%';
+iframe.style.left = '50%';
+iframe.style.width = '95%';
+iframe.style.height = '95%';
+iframe.style.transform = 'translate(-50%, -50%)';
+iframe.style.zIndex = '10000';
+// Function to close the iframe and remove the backdrop
+function closeIframe() {
+//player.pauseVideo();
+document.body.removeChild(backdrop);
+document.body.removeChild(closeButton);
+iframe.style.display = 'none';
+}
+
+// Listen for the 'ended' event on the iframe's contentWindow
+    closeButton.addEventListener('click', closeIframe);
+}
+
+    </script>
+    <script>
+        function resizeBackgroundImages() {
+            // Get all elements with class 'img'
+            let imgElements = document.querySelectorAll('.img_fr');
+            // Loop through each element
+            imgElements.forEach(function(element) {
+                // Get the height and width of the element
+                let height = element.offsetHeight;
+                let width = element.offsetWidth;
+                // Get all elements with class 'row'
+                let rowElements = document.querySelectorAll('.img_bg_container');
+                // Loop through each element
+                rowElements.forEach(function(rowElement) {
+                // Set the background size of the element to the height and width of the 'img' element
+                rowElement.style.backgroundSize = width + "px " + height + "px";
+                });
+            });
+        }
+        window.addEventListener('load', resizeBackgroundImages);
+    </script>
+<!-- pictures script -->
+    <script>
+            function showPictureWithAudio(imageId, audioId) {
+    // Create backdrop overlay
+    var backdrop = document.createElement('div');
+    backdrop.style.position = 'fixed';
+    backdrop.style.top = '0';
+    backdrop.style.left = '0';
+    backdrop.style.width = '100%';
+    backdrop.style.height = '100%';
+    backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+    backdrop.style.zIndex = '9999';
+    document.body.appendChild(backdrop);
+
+    // Get image and audio elements by ID
+    var image = document.getElementById(imageId);
+    var audio = document.getElementById(audioId);
+
+    // Set image styles
+    image.style.display = 'none';
+    image.style.position = 'fixed';
+    image.style.top = '50%';
+    image.style.left = '50%';
+    image.style.transform = 'translate(-50%, -50%)';
+    image.style.zIndex = '10000';
+
+    // Event listener for audio ended
+        function close_audio() {
+            // Hide the image
+            image.style.display = 'none';
+
+            // Remove the backdrop
+            document.body.removeChild(backdrop);
+
+            audio.pause
+
+            document.body.removeChild(closeButton);
+
+        };
+
+    // Event listener for audio play
+    audio.addEventListener('play', function() {
+        // Show the image
+        image.style.display = 'block';
+    });
+
+    // Play the audio
+    audio.play();
+
+    var closeButton = document.createElement('button');
+    closeButton.innerHTML = 'اغلاق';
+    closeButton.style.position = 'fixed';
+    closeButton.style.top = '10px';
+    closeButton.style.right = '10px';
+    closeButton.style.zIndex = '10001';
+    closeButton.onclick = close_audio;
+    document.body.appendChild(closeButton);
+        }
+
+
+
+
+
+    </script>
+    <!-- vioce scripts -->
+    <script>
+        function replayAudio(id) {
+        // Pause all audio elements
+        var audioElements = document.getElementsByTagName('audio');
+        for (var i = 0; i < audioElements.length; i++) {
+            var audio = audioElements[i];
+            if (audio !== null && audio.id !== id) {
+            audio.pause();
+            }
+        }
+
+        // Replay the selected audio
+        var selectedAudio = document.getElementById(id);
+        if (selectedAudio !== null) {
+            selectedAudio.currentTime = 0;
+            selectedAudio.play();
+        }
+        }
+
+    </script>
+
+
+<!-- video animation function -->
+    <script>
+function playHiddenVideo(videoId) {
+var video = document.getElementById(videoId);
+
+// Create backdrop overlay
+var backdrop = document.createElement('div');
+backdrop.style.position = 'fixed';
+backdrop.style.top = '0';
+backdrop.style.left = '0';
+backdrop.style.width = '100%';
+backdrop.style.height = '100%';
+backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Adjust the transparency as desired
+backdrop.style.zIndex = '9999';
+document.body.appendChild(backdrop);
+
+// Play the video
+video.play();
+
+// Set video properties
+var videoSize = Math.min(window.innerWidth, window.innerHeight) * 0.6; // Adjust the size as desired
+var videoMargin = videoSize / 2;
+
+// Center the video on the page
+video.style.display = 'block';
+video.style.position = 'fixed';
+video.style.width = videoSize + 'px';
+video.style.height = videoSize + 'px';
+video.style.top = '50%';
+video.style.left = '50%';
+video.style.transform = 'translate(-50%, -50%)';
+video.style.zIndex = '10000';
+
+var closeButton = document.createElement('button');
+closeButton.innerHTML = 'اغلاق';
+closeButton.style.position = 'fixed';
+closeButton.style.top = '10px';
+closeButton.style.right = '10px';
+closeButton.style.zIndex = '10001';
+closeButton.onclick = closeVideo;
+document.body.appendChild(closeButton);
+
+// Listen for the 'ended' event
+
+        function closeVideo() {
+//player.pauseVideo();
+document.body.removeChild(backdrop);
+document.body.removeChild(closeButton);
+video.pause ();
+video.style.display = 'none';
+}
+}
+
+    </script>
+<!-- iframe -->
+    <script>
+function showIframe(id) {
+var iframe = document.getElementById(id);
+
+// Create backdrop overlay
+var backdrop = document.createElement('div');
+backdrop.style.position = 'fixed';
+backdrop.style.top = '0';
+backdrop.style.left = '0';
+backdrop.style.width = '100%';
+backdrop.style.height = '100%';
+backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+backdrop.style.zIndex = '9999';
+document.body.appendChild(backdrop);
+var closeButton = document.createElement('button');
+closeButton.innerHTML = 'اغلاق';
+closeButton.style.position = 'fixed';
+closeButton.style.top = '10px';
+closeButton.style.right = '10px';
+closeButton.style.zIndex = '10001';
+closeButton.onclick = closeIframe;
+document.body.appendChild(closeButton);
+
+// Center the iframe on the page
+iframe.style.display = 'block';
+iframe.style.position = 'fixed';
+iframe.style.top = '50%';
+iframe.style.left = '50%';
+iframe.style.width = '95%';
+iframe.style.height = '95%';
+iframe.style.transform = 'translate(-50%, -50%)';
+iframe.style.zIndex = '10000';
+// Function to close the iframe and remove the backdrop
+function closeIframe() {
+//player.pauseVideo();
+document.body.removeChild(backdrop);
+document.body.removeChild(closeButton);
+iframe.style.display = 'none';
+}
+
+// Listen for the 'ended' event on the iframe's contentWindow
+    closeButton.addEventListener('click', closeIframe);
+}
+
+    </script>
+    <script>
+        function resizeBackgroundImages() {
+            // Get all elements with class 'img'
+            let imgElements = document.querySelectorAll('.img_fr');
+            // Loop through each element
+            imgElements.forEach(function(element) {
+                // Get the height and width of the element
+                let height = element.offsetHeight;
+                let width = element.offsetWidth;
+                // Get all elements with class 'row'
+                let rowElements = document.querySelectorAll('.img_bg_container');
+                // Loop through each element
+                rowElements.forEach(function(rowElement) {
+                // Set the background size of the element to the height and width of the 'img' element
+                rowElement.style.backgroundSize = width + "px " + height + "px";
+                });
+            });
+        }
+        window.addEventListener('load', resizeBackgroundImages);
+    </script>
+<!-- pictures script -->
+    <script>
+            function showPictureWithAudio(imageId, audioId) {
+    // Create backdrop overlay
+    var backdrop = document.createElement('div');
+    backdrop.style.position = 'fixed';
+    backdrop.style.top = '0';
+    backdrop.style.left = '0';
+    backdrop.style.width = '100%';
+    backdrop.style.height = '100%';
+    backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+    backdrop.style.zIndex = '9999';
+    document.body.appendChild(backdrop);
+
+    // Get image and audio elements by ID
+    var image = document.getElementById(imageId);
+    var audio = document.getElementById(audioId);
+
+    // Set image styles
+    image.style.display = 'none';
+    image.style.position = 'fixed';
+    image.style.top = '50%';
+    image.style.left = '50%';
+    image.style.transform = 'translate(-50%, -50%)';
+    image.style.zIndex = '10000';
+
+    // Event listener for audio ended
+        function close_audio() {
+            // Hide the image
+            image.style.display = 'none';
+
+            // Remove the backdrop
+            document.body.removeChild(backdrop);
+
+            audio.pause
+
+            document.body.removeChild(closeButton);
+
+        };
+
+    // Event listener for audio play
+    audio.addEventListener('play', function() {
+        // Show the image
+        image.style.display = 'block';
+    });
+
+    // Play the audio
+    audio.play();
+
+    var closeButton = document.createElement('button');
+    closeButton.innerHTML = 'اغلاق';
+    closeButton.style.position = 'fixed';
+    closeButton.style.top = '10px';
+    closeButton.style.right = '10px';
+    closeButton.style.zIndex = '10001';
+    closeButton.onclick = close_audio;
+    document.body.appendChild(closeButton);
+        }
+
+
+
+
+
+    </script>
+    <!-- vioce scripts -->
+    <script>
+        function replayAudio(id) {
+        // Pause all audio elements
+        var audioElements = document.getElementsByTagName('audio');
+        for (var i = 0; i < audioElements.length; i++) {
+            var audio = audioElements[i];
+            if (audio !== null && audio.id !== id) {
+            audio.pause();
+            }
+        }
+
+        // Replay the selected audio
+        var selectedAudio = document.getElementById(id);
+        if (selectedAudio !== null) {
+            selectedAudio.currentTime = 0;
+            selectedAudio.play();
+        }
+        }
+
+    </script>
+ <script>
+
+    function playrootVideo(videoId) {
+        var rVideo = document.getElementById(videoId);
+        var pic = document.getElementById('rootw');
+
+        rVideo.play();
+        pic.style.backgroundColor = 'white';
+        rVideo.style.display = "block";
+
+
+
+    }
+    
+
+</script>
+
+
+
+<!-- video animation function -->
+    <script>
+function playHiddenVideo(videoId) {
+var video = document.getElementById(videoId);
+
+// Create backdrop overlay
+var backdrop = document.createElement('div');
+backdrop.style.position = 'fixed';
+backdrop.style.top = '0';
+backdrop.style.left = '0';
+backdrop.style.width = '100%';
+backdrop.style.height = '100%';
+backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Adjust the transparency as desired
+backdrop.style.zIndex = '9999';
+document.body.appendChild(backdrop);
+
+// Play the video
+video.play();
+
+// Set video properties
+var videoSize = Math.min(window.innerWidth, window.innerHeight) * 0.6; // Adjust the size as desired
+var videoMargin = videoSize / 2;
+
+// Center the video on the page
+video.style.display = 'block';
+video.style.position = 'fixed';
+video.style.width = videoSize + 'px';
+video.style.height = videoSize + 'px';
+video.style.top = '50%';
+video.style.left = '50%';
+video.style.transform = 'translate(-50%, -50%)';
+video.style.zIndex = '10000';
+
+var closeButton = document.createElement('button');
+closeButton.innerHTML = 'اغلاق';
+closeButton.style.position = 'fixed';
+closeButton.style.top = '10px';
+closeButton.style.right = '10px';
+closeButton.style.zIndex = '10001';
+closeButton.onclick = closeVideo;
+document.body.appendChild(closeButton);
+
+// Listen for the 'ended' event
+
+        function closeVideo() {
+//player.pauseVideo();
+document.body.removeChild(backdrop);
+document.body.removeChild(closeButton);
+video.pause ();
+video.style.display = 'none';
+}
+}
+
+    </script>
+<!-- iframe -->
+    <script>
+function showIframe(id) {
+var iframe = document.getElementById(id);
+
+// Create backdrop overlay
+var backdrop = document.createElement('div');
+backdrop.style.position = 'fixed';
+backdrop.style.top = '0';
+backdrop.style.left = '0';
+backdrop.style.width = '100%';
+backdrop.style.height = '100%';
+backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.5)';
+backdrop.style.zIndex = '9999';
+document.body.appendChild(backdrop);
+var closeButton = document.createElement('button');
+closeButton.innerHTML = 'اغلاق';
+closeButton.style.position = 'fixed';
+closeButton.style.top = '10px';
+closeButton.style.right = '10px';
+closeButton.style.zIndex = '10001';
+closeButton.onclick = closeIframe;
+document.body.appendChild(closeButton);
+
+// Center the iframe on the page
+iframe.style.display = 'block';
+iframe.style.position = 'fixed';
+iframe.style.top = '50%';
+iframe.style.left = '50%';
+iframe.style.width = '95%';
+iframe.style.height = '95%';
+iframe.style.transform = 'translate(-50%, -50%)';
+iframe.style.zIndex = '10000';
+// Function to close the iframe and remove the backdrop
+function closeIframe() {
+//player.pauseVideo();
+document.body.removeChild(backdrop);
+document.body.removeChild(closeButton);
+iframe.style.display = 'none';
+}
+
+// Listen for the 'ended' event on the iframe's contentWindow
+    closeButton.addEventListener('click', closeIframe);
+}
+
+    </script>
+    <script>
+        function resizeBackgroundImages() {
+            // Get all elements with class 'img'
+            let imgElements = document.querySelectorAll('.img_fr');
+            // Loop through each element
+            imgElements.forEach(function(element) {
+                // Get the height and width of the element
+                let height = element.offsetHeight;
+                let width = element.offsetWidth;
+                // Get all elements with class 'row'
+                let rowElements = document.querySelectorAll('.img_bg_container');
+                // Loop through each element
+                rowElements.forEach(function(rowElement) {
+                // Set the background size of the element to the height and width of the 'img' element
+                rowElement.style.backgroundSize = width + "px " + height + "px";
+                });
+            });
+        }
+        window.addEventListener('load', resizeBackgroundImages);
+    </script>
+<!-- pictures script -->
+    <script>
+            function showPictureWithAudio(imageId, audioId) {
+    // Create backdrop overlay
+    var backdrop = document.createElement('div');
+    backdrop.style.position = 'fixed';
+    backdrop.style.top = '0';
+    backdrop.style.left = '0';
+    backdrop.style.width = '100%';
+    backdrop.style.height = '100%';
+    backdrop.style.backgroundColor = 'rgba(0, 0, 0, 0.95)';
+    backdrop.style.zIndex = '9999';
+    document.body.appendChild(backdrop);
+
+    // Get image and audio elements by ID
+    var image = document.getElementById(imageId);
+    var audio = document.getElementById(audioId);
+
+    // Set image styles
+    image.style.display = 'none';
+    image.style.position = 'fixed';
+    image.style.top = '50%';
+    image.style.left = '50%';
+    image.style.transform = 'translate(-50%, -50%)';
+    image.style.zIndex = '10000';
+
+    // Event listener for audio ended
+        function close_audio() {
+            // Hide the image
+            image.style.display = 'none';
+
+            // Remove the backdrop
+            document.body.removeChild(backdrop);
+
+            audio.pause
+
+            document.body.removeChild(closeButton);
+
+        };
+
+    // Event listener for audio play
+    audio.addEventListener('play', function() {
+        // Show the image
+        image.style.display = 'block';
+    });
+
+    // Play the audio
+    audio.play();
+
+    var closeButton = document.createElement('button');
+    closeButton.innerHTML = 'اغلاق';
+    closeButton.style.position = 'fixed';
+    closeButton.style.top = '10px';
+    closeButton.style.right = '10px';
+    closeButton.style.zIndex = '10001';
+    closeButton.onclick = close_audio;
+    document.body.appendChild(closeButton);
+        }
+
+
+
+
+
+    </script>
+    <!-- vioce scripts -->
+    <script>
+        function replayAudio(id) {
+        // Pause all audio elements
+        var audioElements = document.getElementsByTagName('audio');
+        for (var i = 0; i < audioElements.length; i++) {
+            var audio = audioElements[i];
+            if (audio !== null && audio.id !== id) {
+            audio.pause();
+            }
+        }
+
+        // Replay the selected audio
+        var selectedAudio = document.getElementById(id);
+        if (selectedAudio !== null) {
+            selectedAudio.currentTime = 0;
+            selectedAudio.play();
+        }
+        }
+
+    </script>
+
+
